@@ -13,7 +13,9 @@
 		"parcel-bundler": "^1.12.4"
 	},
 	"dependencies": {
+		"@reacthooks.org/use-set-interval": "^1.0.8",
 		"react": "^16.13.1",
-		"react-dom": "^16.13.1"
+		"react-dom": "^16.13.1",
+		"use-set-interval": "^1.0.4"
 	}
 }

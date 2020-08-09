@@ -55,8 +55,6 @@ function nQueen(N) {
 		return Math.floor(Math.random() * n);
 	}
 	function pickMin(index) {
-		console.log("i in pickMin:" + index);
-
 		let probs = checkColumn(index);
 		let min = 6;
 		let idx = [];

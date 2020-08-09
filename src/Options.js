@@ -1,6 +1,13 @@
 import React from "react";
 
-const Options = ({ changeSize, size, solveImm, solveInTime }) => {
+const Options = ({
+	changeSize,
+	size,
+	solveImm,
+	oneStep,
+	solveInTime,
+	setRunInTime,
+}) => {
 	let options = [];
 	for (let i = 1; i <= 10; i++)
 		options.push(
@@ -25,7 +32,16 @@ const Options = ({ changeSize, size, solveImm, solveInTime }) => {
 			<button id="solve-in-time" onClick={(e) => solveInTime(size)}>
 				Solution In Time
 			</button>
-			<button id="one-step">Go One Step</button>
+			<button
+				id="one-step"
+				onClick={(e) => {
+					setRunInTime(false);
+
+					oneStep(size);
+				}}
+			>
+				Go One Step
+			</button>
 		</div>
 	);
 };
