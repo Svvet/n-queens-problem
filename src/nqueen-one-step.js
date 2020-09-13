@@ -7,9 +7,9 @@
 // if (N == 1) return [0];
 // if (N == 2 || N == 3) return [];
 
-function isValid() {
+function isValid(board, N) {
 	for (let i = 0; i < N; i++) {
-		if (problems(i, board[i]) != 0) return false;
+		if (problems(i, board[i], board) != 0) return false;
 	}
 	return true;
 }
@@ -55,8 +55,9 @@ function checkColumn(index, board) {
 function pickRand(n) {
 	return Math.floor(Math.random() * n);
 }
-function pickColumn(N, board) {
+function pickColumn(N, board, lastColumn) {
 	let pickedColumn = pickRand(N);
+	while (pickedColumn == lastColumn) pickedColumn = pickRand(N);
 	let conflicts = checkColumn(pickedColumn, board);
 	return [pickedColumn, conflicts];
 }
@@ -76,4 +77,4 @@ function pickMin(index, probs, board) {
 	return board;
 }
 
-export { pickColumn, pickMin };
+export { pickColumn, pickMin, isValid };

@@ -1,6 +1,7 @@
 * {
 	margin: 0;
 	padding: 0;
+	box-sizing: border-box;
 }
 #options {
 	text-align: center;
@@ -8,6 +9,13 @@
 .board {
 	display: flex;
 	justify-content: center;
+	margin: 20px 20px;
+}
+.board-container {
+	height: 600px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .column {
 	display: flex;
@@ -28,4 +36,10 @@ i {
 }
 .pickedColumn {
 	border: solid 4px black;
+}
+.pickedColumn div {
+	background-color: rgb(221, 221, 221);
+}
+.pickedColumn .queen {
+	background-color: rgb(214, 106, 106);
 }

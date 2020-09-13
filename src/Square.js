@@ -5,7 +5,7 @@ const Square = ({ queen, problems, position }) => {
 	if (problems) {
 		if (queen)
 			return (
-				<div className="square">
+				<div className="square queen">
 					<i className="fas fa-chess-queen"></i>
 					<p>{problems[j]}</p>
 				</div>

@@ -7,6 +7,7 @@ const Options = ({
 	oneStep,
 	solveInTime,
 	setRunInTime,
+	reset,
 }) => {
 	let options = [];
 	for (let i = 1; i <= 10; i++)
@@ -41,6 +42,14 @@ const Options = ({
 				}}
 			>
 				Go One Step
+			</button>
+			<button
+				id="reset"
+				onClick={(e) => {
+					reset();
+				}}
+			>
+				Reset
 			</button>
 		</div>
 	);
