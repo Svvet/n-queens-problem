@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import Board from "./Board";
 import Options from "./Options";
 import nQueen from "./nqueen";
-import { pickColumn, pickMin, isValid } from "./nqueen-one-step";
+import { pickColumn, pickMin, isValid, checkColumn } from "./nqueen-one-step";
 import useSetInterval from "use-set-interval";
 import SetInterval from "./SetInterval";
 
@@ -14,13 +14,20 @@ const App = () => {
 	for (let i = 0; i < size; i++) {
 		startArr.push(-1);
 	}
+
 	// const [queenPositions, setPositions] = useState(startArr);
 	const [queenPositions, setPositions] = useState(startArr);
 	const [pickedColumn, setPickedColumn] = useState(-1);
 	const [problems, setProblems] = useState([]);
 	const [runInTime, setRunInTime] = useState(false);
 	const [lastColumn, setLastColumn] = useState(-1);
+	const [solved, setSolved] = useState(false);
 
+	const markSquare = (position) => {
+		let newPositions = queenPositions.slice();
+		newPositions[position[0]] = position[1];
+		setPositions(newPositions);
+	};
 	const changeSize = (x) => {
 		setSize(x);
 		let startArr = [];
@@ -32,6 +39,7 @@ const App = () => {
 		setStage(0);
 		setRunInTime(false);
 		setLastColumn(-1);
+		setSolved(false);
 	};
 
 	const solveImm = (size) => {
@@ -42,16 +50,19 @@ const App = () => {
 		setPositions(solution);
 		setPickedColumn(-1);
 		setStage(0);
+		setSolved(true);
 	};
 
 	const oneStep = (size) => {
 		// setRunInTime(false);
 		if (isValid(queenPositions, size)) {
 			console.log("yo");
+			console.log(queenPositions);
 			setStage(0);
 			setPickedColumn(-1);
 			setRunInTime(false);
-			solved();
+
+			setSolved(true);
 			return;
 		}
 		if (oneStepStage) {
@@ -72,7 +83,7 @@ const App = () => {
 	};
 
 	const solveInTime = () => {
-		setRunInTime(!runInTime);
+		if (!isValid(queenPositions, size)) setRunInTime(!runInTime);
 		// setPickedColumn(-1);
 		// setStage(0);
 	};
@@ -81,11 +92,26 @@ const App = () => {
 		setStage(0);
 		setPickedColumn(-1);
 		setRunInTime(false);
+		setSolved(false);
 	};
-	const solved = () => {};
+
 	return (
 		<div id="general-container">
 			<SetInterval oneStep={oneStep} size={size} run={runInTime} />
+
+			<div className="board-container">
+				<Board
+					size={size}
+					queenPositions={queenPositions}
+					pickedColumn={pickedColumn}
+					problems={problems}
+					markSquare={markSquare}
+					setPickedColumn={setPickedColumn}
+					checkColumn={checkColumn}
+					setProblems={setProblems}
+					setStage={setStage}
+				/>
+			</div>
 			<Options
 				changeSize={changeSize}
 				size={size}
@@ -94,16 +120,20 @@ const App = () => {
 				solveInTime={solveInTime}
 				setRunInTime={setRunInTime}
 				reset={reset}
+				runInTime={runInTime}
 			/>
-			<div className="board-container">
-				<Board
-					size={size}
-					queenPositions={queenPositions}
-					pickedColumn={pickedColumn}
-					problems={problems}
-				/>
+			<div id="solved">
+				<h2>{solved ? "Solved" : ""}</h2>
 			</div>
-			<p>{queenPositions}</p>
+			<p id="description">
+				Description of N Queens Problem:{" "}
+				<a
+					href="https://en.wikipedia.org/wiki/Eight_queens_puzzle"
+					target="_blank"
+				>
+					Wikipedia
+				</a>
+			</p>
 		</div>
 	);
 };

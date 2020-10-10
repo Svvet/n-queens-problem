@@ -9,6 +9,7 @@ function nQueen(N) {
 
 	function isValid() {
 		for (let i = 0; i < N; i++) {
+			if (board[i] == -1) return false;
 			if (problems(i, board[i]) != 0) return false;
 		}
 		return true;
@@ -73,7 +74,14 @@ function nQueen(N) {
 	for (let i = 0; i < N; i++) {
 		pickMin(i);
 	}
-	while (!isValid() && count < 1000) {
+	while (!isValid()) {
+		if (count > 2000) {
+			count = 0;
+			board = [];
+			for (let i = 0; i < N; i++) {
+				board.push(-1);
+			}
+		}
 		count++;
 		pickMin(pickRand(N));
 	}

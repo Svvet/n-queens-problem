@@ -9,6 +9,7 @@
 
 function isValid(board, N) {
 	for (let i = 0; i < N; i++) {
+		if (board[i] == -1) return false;
 		if (problems(i, board[i], board) != 0) return false;
 	}
 	return true;
@@ -77,4 +78,4 @@ function pickMin(index, probs, board) {
 	return board;
 }
 
-export { pickColumn, pickMin, isValid };
+export { pickColumn, pickMin, isValid, checkColumn };

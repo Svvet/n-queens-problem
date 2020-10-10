@@ -8,6 +8,7 @@ const Options = ({
 	solveInTime,
 	setRunInTime,
 	reset,
+	runInTime,
 }) => {
 	let options = [];
 	for (let i = 1; i <= 10; i++)
@@ -18,21 +19,29 @@ const Options = ({
 		);
 	return (
 		<div id="options">
-			<label htmlFor="size-select">Size Select</label>
-			<select
-				value={size}
-				name="size"
-				id="size-select"
-				onChange={(e) => changeSize(e.target.value)}
-			>
-				{options}
-			</select>
+			<div id="size-container">
+				<label htmlFor="size-select">Size Select</label>
+				<select
+					value={size}
+					name="size"
+					id="size-select"
+					onChange={(e) => changeSize(e.target.value)}
+				>
+					{options}
+				</select>
+			</div>
 			<button id="solve-immediate" onClick={(e) => solveImm(size)}>
 				Immediate Solution
 			</button>
-			<button id="solve-in-time" onClick={(e) => solveInTime(size)}>
-				Solution In Time
-			</button>
+			<div id="sol-in-time-container">
+				<button id="solve-in-time" onClick={(e) => solveInTime(size)}>
+					Solution In Time
+				</button>
+				<p id="state-of-in-time" className={runInTime ? "running" : "stop"}>
+					{runInTime ? "Running" : "Stop"}
+				</p>
+			</div>
+
 			<button
 				id="one-step"
 				onClick={(e) => {

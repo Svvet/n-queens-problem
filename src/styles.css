@@ -1,10 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	font-family: "Roboto", sans-serif;
 }
 #options {
-	text-align: center;
+	display: flex;
+	justify-content: center;
+	/* max-width: 800px; */
+	margin: auto;
+	align-items: flex-start;
+}
+#options > * {
+	margin: 0px 10px;
+	font-size: 20px;
+}
+#size-container * {
+	font-size: 20px;
+}
+#size-container label {
+	margin: 0 10px 0 0;
 }
 .board {
 	display: flex;
@@ -12,7 +28,6 @@
 	margin: 20px 20px;
 }
 .board-container {
-	height: 600px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -25,8 +40,8 @@
 }
 .square {
 	border: solid 1px black;
-	width: 50px;
-	height: 50px;
+	width: 60px;
+	height: 60px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -34,12 +49,70 @@
 i {
 	font-size: 25px;
 }
-.pickedColumn {
-	border: solid 4px black;
+#pickedColumn {
+	border: solid 3px black;
 }
-.pickedColumn div {
-	background-color: rgb(221, 221, 221);
+
+button {
+	font-size: 20px;
 }
-.pickedColumn .queen {
+#sol-in-time-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.running {
+	color: rgb(48, 160, 53);
+}
+.stop {
+	color: crimson;
+}
+#solved {
+	text-align: center;
+	color: rgba(139, 0, 139, 0.753);
+}
+
+.column:nth-child(2n) .square:nth-child(2n + 1) {
+	background-color: rgba(102, 75, 31, 0.609);
+}
+.column:nth-child(2n + 1) .square:nth-child(2n) {
+	background-color: rgba(102, 75, 31, 0.609);
+}
+.column:nth-child(2n)#pickedColumn .square:nth-child(2n + 1) {
+	background-color: rgba(46, 34, 14, 0.609);
+}
+.column:nth-child(2n)#pickedColumn .square:nth-child(2n) {
+	background-color: rgb(192, 192, 192);
+}
+.column:nth-child(2n + 1)#pickedColumn .square:nth-child(2n + 1) {
+	background-color: rgb(192, 192, 192);
+}
+.column:nth-child(2n + 1)#pickedColumn .square:nth-child(2n) {
+	background-color: rgba(46, 34, 14, 0.609);
+}
+
+.column:nth-child(n)#pickedColumn .square:nth-child(n).queen {
 	background-color: rgb(214, 106, 106);
+}
+
+a {
+	text-decoration: none;
+	font-weight: bold;
+	color: rgb(51, 138, 138);
+}
+#description {
+	text-align: center;
+	margin-top: 30px;
+	font-size: 12px;
+}
+.board-container {
+	display: flex;
+	flex-direction: column;
+}
+.column-picker {
+	margin-bottom: 10px;
+	font-size: 30px;
+}
+.column-picker:hover {
+	cursor: pointer;
 }
